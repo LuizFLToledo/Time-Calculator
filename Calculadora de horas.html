@@ -1,0 +1,186 @@
+<html>
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title> Calculadora de horas </title>
+
+        <style>
+
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hora{
+
+                display: inline-block;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .resultado, div .p{
+                display: inline-block;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin-top: 30px;
+                border-top: 2px dashed #ccc;
+                padding-top: 200px;
+            }
+
+            .operador{
+                display: inline-block;
+                text-align: center;
+                justify-content: center;
+            }
+
+            p {
+                font-size: 20px;
+                font-weight: bold;
+                align-items: center;
+            }
+
+        </style>
+
+        <script>
+
+            function calcular() {
+
+                var horas1 = document.getElementById("horas1");
+                var minutos1 = document.getElementById("minutos1");
+                var segundos1 = document.getElementById("segundos1");
+                var horas2 = document.getElementById("horas2");
+                var minutos2 = document.getElementById("minutos2");
+                var segundos2 = document.getElementById("segundos2");
+
+                var totalSegundos1 = (parseInt(horas1.value) * 3600) + (parseInt(minutos1.value) * 60) + parseInt(segundos1.value);
+                var totalSegundos2 = (parseInt(horas2.value) * 3600) + (parseInt(minutos2.value) * 60) + parseInt(segundos2.value);
+
+                var operadorSoma = document.getElementById("soma");
+                var operadorSubtracao = document.getElementById("subtracao");
+
+                var inputHoras = document.getElementById("horas");
+                var inputMinutos = document.getElementById("minutos");
+                var inputSegundos = document.getElementById("segundos");
+                
+
+                if(operadorSoma.checked == true){
+                
+                        var resultadoSegundos = totalSegundos1 + totalSegundos2;
+
+                        var horas = Math.floor(resultadoSegundos / 3600);
+                        var resto = resultadoSegundos % 3600;
+                        var minutos = Math.floor(resto / 60);
+                        var segundos = resto % 60;
+
+                        inputHoras.value = horas;
+                        inputMinutos.value = minutos;
+                        inputSegundos.value = segundos;
+
+                    } else if(operadorSubtracao.checked == true){
+
+                        var resultadoSegundos = totalSegundos1 - totalSegundos2;
+                        var horas = Math.floor(resultadoSegundos / 3600);
+                        var resto = resultadoSegundos % 3600;
+                        var minutos = Math.floor(resto / 60);
+                        var segundos = resto % 60;
+
+                        inputHoras.value = horas;
+                        inputMinutos.value = minutos;
+                        inputSegundos.value = segundos;
+
+                        var valorHoras = inputHoras.value;
+                        var valorMinutos = inputMinutos.value;
+                        var valorSegundos = inputSegundos.value;
+
+                        if(valorHoras < 0 || valorMinutos < 0 || valorSegundos < 0) {
+
+                            inputHoras.value = inputHoras.value * -1;
+                            inputMinutos.value = inputMinutos.value * -1;
+                            inputSegundos.value = inputSegundos.value * -1;
+
+                        }
+
+                    }
+                }
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <div>
+
+            
+
+                
+
+                <div class="hora">
+
+                    <p> Hora 1 </p>
+
+                    <label for="horas">Horas:</label>
+                    <input type="number" name="horas" id="horas1" value="0" required>
+
+                    <label for="minutos">Minutos:</label>
+                    <input type="number" name="minutos" id="minutos1" value="0" required>
+
+                    <label for="segundos">Segundos:</label>
+                    <input type="number" name="segundos" id="segundos1" value="0" required>
+                </div>
+
+                <div class="operador">
+
+                    <p> Operador </p>
+                    
+                    <input type="radio" name="operador" id="soma" value="soma" checked required>
+                    <label for="soma">Soma</label>
+                    <input type="radio" name="operador" id="subtracao" value="subtracao" required>
+                    <label for="subtracao">Subtração</label>
+                </div>
+
+                <div class="hora">
+
+                    <p> Hora 2 </p>
+
+                    <label for="horas">Horas:</label>
+                    <input type="number" name="horas" value="0" id="horas2" required>
+
+                    <label for="minutos">Minutos:</label>
+                    <input type="number" name="minutos" value="0" id="minutos2" required>
+
+                    <label for="segundos">Segundos:</label>
+                    <input type="number" name="segundos" value="0" id="segundos2" required>
+                </div>
+
+                
+
+                <div class="resultado">
+
+                    <input type="button" value="Calcular" onclick="calcular()">
+                
+                    <p> Resultado: </p>
+
+                    <label for="horas">Horas:</label>
+                    <input type="number" name="horas" id="horas" readonly>
+
+                    <label for="minutos">Minutos:</label>
+                    <input type="number" name="minutos" id="minutos" readonly>
+
+                    <label for="segundos">Segundos:</label>
+                    <input type="number" name="segundos" id="segundos" readonly>
+
+
+                </div>
+
+        </div>
+
+    </body>
+
+</html>
