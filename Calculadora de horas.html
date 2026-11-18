@@ -68,8 +68,21 @@
                 var inputMinutos = document.getElementById("minutos");
                 var inputSegundos = document.getElementById("segundos");
                 
+                var inputHoras1 = document.getElementById("horas1");
+                var inputMinutos1 = document.getElementById("minutos1");    
+                var inputSegundos1 = document.getElementById("segundos1");
 
-                if(operadorSoma.checked == true){
+                var inputHoras2 = document.getElementById("horas2");
+                var inputMinutos2 = document.getElementById("minutos2");
+                var inputSegundos2 = document.getElementById("segundos2");
+
+                if(inputHoras1.value < 0 || inputMinutos1.value < 0 || inputSegundos1.value < 0 || inputHoras2.value < 0 || inputMinutos2.value < 0 || inputSegundos2.value < 0) {
+
+                    alert("Por favor, insira valores positivos para horas, minutos e segundos.");
+
+                    return;
+
+                }else if(operadorSoma.checked == true){
                 
                         var resultadoSegundos = totalSegundos1 + totalSegundos2;
 
@@ -107,6 +120,8 @@
                         }
 
                     }
+                
+
                 }
 
         </script>
