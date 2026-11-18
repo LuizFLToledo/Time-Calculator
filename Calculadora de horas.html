@@ -4,6 +4,7 @@
 
         <meta charset="UTF-8">
 
+
         <title> Calculadora de horas </title>
 
         <style>
@@ -124,6 +125,42 @@
 
                 }
 
+                function removerZero(){
+                    var inputHoras1 = document.getElementById("horas1");
+                    var inputMinutos1 = document.getElementById("minutos1");    
+                    var inputSegundos1 = document.getElementById("segundos1");
+
+                    var inputHoras2 = document.getElementById("horas2");
+                    var inputMinutos2 = document.getElementById("minutos2");
+                    var inputSegundos2 = document.getElementById("segundos2");
+
+
+                    if(inputHoras1.value > 0 || inputMinutos1.value > 0 || inputSegundos1.value > 0 || inputHoras2.value > 0 || inputMinutos2.value > 0 || inputSegundos2.value > 0) {
+
+                        inputHoras1.value = String(inputHoras1.value);
+                        inputMinutos1.value = String(inputMinutos1.value);
+                        inputSegundos1.value = String(inputSegundos1.value);
+
+                        inputHoras2.value = String(inputHoras2.value);
+                        inputMinutos2.value = String(inputMinutos2.value);
+                        inputSegundos2.value = String(inputSegundos2.value);
+
+                        if(inputHoras1.value.charAt(0) === "0" && inputHoras1.value.length > 1) {
+                            inputHoras1.value = inputHoras1.value.slice(1);
+                        }else if(inputMinutos1.value.charAt(0) === "0" && inputMinutos1.value.length > 1) {
+                            inputMinutos1.value = inputMinutos1.value.slice(1);
+                        }else if(inputSegundos1.value.charAt(0) === "0" && inputSegundos1.value.length > 1) {
+                            inputSegundos1.value = inputSegundos1.value.slice(1);
+                        }else if(inputHoras2.value.charAt(0) === "0" && inputHoras2.value.length > 1) {
+                            inputHoras2.value = inputHoras2.value.slice(1);
+                        }else if(inputMinutos2.value.charAt(0) === "0" && inputMinutos2.value.length > 1) {
+                            inputMinutos2.value = inputMinutos2.value.slice(1);
+                        }else if(inputSegundos2.value.charAt(0) === "0" && inputSegundos2.value.length > 1) {
+                            inputSegundos2.value = inputSegundos2.value.slice(1);
+                        }
+                    }
+                }
+
         </script>
 
     </head>
@@ -141,13 +178,13 @@
                     <p> Hora 1 </p>
 
                     <label for="horas">Horas:</label>
-                    <input type="number" name="horas" id="horas1" value="0" required>
+                    <input type="number" name="horas" id="horas1" value="0" onblur="removerZero(this)" required>
 
                     <label for="minutos">Minutos:</label>
-                    <input type="number" name="minutos" id="minutos1" value="0" required>
+                    <input type="number" name="minutos" id="minutos1" value="0" onblur="removerZero(this)" required>
 
                     <label for="segundos">Segundos:</label>
-                    <input type="number" name="segundos" id="segundos1" value="0" required>
+                    <input type="number" name="segundos" id="segundos1" value="0" onblur="removerZero(this)" required>
                 </div>
 
                 <div class="operador">
@@ -165,13 +202,13 @@
                     <p> Hora 2 </p>
 
                     <label for="horas">Horas:</label>
-                    <input type="number" name="horas" value="0" id="horas2" required>
+                    <input type="number" name="horas" value="0" id="horas2" onblur="removerZero(this)" required>
 
                     <label for="minutos">Minutos:</label>
-                    <input type="number" name="minutos" value="0" id="minutos2" required>
+                    <input type="number" name="minutos" value="0" id="minutos2" onblur="removerZero(this)" required>
 
                     <label for="segundos">Segundos:</label>
-                    <input type="number" name="segundos" value="0" id="segundos2" required>
+                    <input type="number" name="segundos" value="0" id="segundos2" onblur="removerZero(this)" required>
                 </div>
 
                 
@@ -179,6 +216,7 @@
                 <div class="resultado">
 
                     <input type="button" value="Calcular" onclick="calcular()">
+                    <input type="button" value="Limpar" onclick="window.location.reload()">
                 
                     <p> Resultado: </p>
 
